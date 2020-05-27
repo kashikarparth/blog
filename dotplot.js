@@ -25,5 +25,5 @@ $("#next").click(function(){
     z_index--;
     svgContainer.transition().duration(1500).attr("width",contWidth/3).attr("height",contHeight/3);
     var svgContainer2 = d3.select("#container").append("svg").attr("width",contWidth).attr("height",contHeight).style("position","absolute").style("top",0).style("left",0).style("z-index",z_index);
-    var circles2 = svgContainer2.selectAll("circle").data(data).enter().append("circle").attr("cx",d=>d.cx).attr("cy",d=>d.cy).attr("r",radius_dot).style("fill","green");
+    var circles2 = svgContainer2.selectAll("circle").data(data).enter().append("circle").attr("cx",d=>d.cx).attr("cy",d=>d.cy).attr("r",radius_dot).style("fill","black");
 });
