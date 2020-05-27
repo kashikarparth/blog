@@ -19,5 +19,5 @@ for(var i = cyval; i<=contHeight-radius_dot; i+=step_val_y){
     })
 }
 
-var circles = svgContainer.selectAll("circle").data(data).enter().append("circle").attr("cx",d=>d.cx).attr("cy",d=>d.cy).attr("r",radius_dot);
+var circles = svgContainer.selectAll("circle").data(data).enter().append("circle").attr("cx",d=>d.cx).attr("cy",d=>d.cy).attr("r",radius_dot).style("fill","81D4FA");
 svgContainer.transition().duration(1500).attr("width",contWidth).attr("height",contHeight);
