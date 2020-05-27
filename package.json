@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kashikarparth/blog.git"
+  },
+  "author": "Parth Kashikar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kashikarparth/blog/issues"
+  },
+  "homepage": "https://github.com/kashikarparth/blog#readme",
+  "devDependencies": {
+    "lite-server": "^2.5.4"
+  }
+}
