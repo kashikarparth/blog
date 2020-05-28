@@ -1,15 +1,15 @@
 $(document).ready(function(){
-    var contWidth = ($(window).width())*(0.6);
-    var contHeight = ($(window).height())*(0.7);
+    var contWidth = ($(window).width());
+    var contHeight = ($(window).height()*0.9);
     var radius_dot = 2;
     var cxval = radius_dot;
     var cyval = radius_dot;
     var step_val_x = radius_dot*3;
     var step_val_y = radius_dot*3;
     var data = [];
-    var z_index = 100;
+    var z_index = 19;
     var svglist = [];
-    var duration = 1000;
+    var duration = 1500;
     var activetext = 0;
     var divlist = [6.32,2.061,5.081,3.217,2.13,3.585,3.464,2.273,1.59,2.52,2.99,6.667,33.911,4.183,1.14,1.73,1.01,85];
     var divind = 0;

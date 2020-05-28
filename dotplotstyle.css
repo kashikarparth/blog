@@ -3,18 +3,18 @@ body{
 }
 #textcontainer{
     font-family: 'Merriweather', serif;
-    font-size: 10vh;
+    font-size: 6vh;
 }
 .hidden{
     font-size: 0;
 }
 
 #next{
-    margin-right: 12%;
+    margin-right: 5%;
     color: white;
     font-family: 'Merriweather', serif;
-    font-size: 10vh;
+    font-size: 6vh;
     border: 5px solid white;
     cursor: pointer;
-    padding: 7px;
+    padding: 5px 10px 5px 10px;
 }
