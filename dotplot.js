@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var contWidth = ($(window).width());
-    var contHeight = ($(window).height()*0.9);
-    var radius_dot = 2;
+    var contHeight = ($(window).height()*0.85);
+    var radius_dot = 4;
     var cxval = radius_dot;
     var cyval = radius_dot;
     var step_val_x = radius_dot*3;
@@ -30,7 +30,7 @@ $(document).ready(function(){
     
     
     
-    
+    //add initial svg
     var svgContainer = d3.select("#container").append("svg").attr("width",contWidth).attr("height",0).style("position","absolute").style("top",0).style("left",0).style("z-index",z_index);
     var circles = svgContainer.selectAll("circle").data(data).enter().append("circle").attr("cx",d=>d.cx).attr("cy",d=>d.cy).attr("r",radius_dot).style("fill",collist[colind]);
     svgContainer.transition().duration(duration).ease(d3.easeSin).attr("height",contHeight);
@@ -40,6 +40,16 @@ $(document).ready(function(){
     colind++;
 
     $("#next").click(function(){
+        //add new svg, base
+        z_index--;
+        svgContainer = svgContainer.select(function() {
+            return this.parentNode.insertBefore(this.cloneNode(true), this.nextSibling);
+          });
+        svgContainer.style("z-index",z_index);
+        svgContainer.selectAll("circle").style("fill",collist[colind]);
+        
+
+        //shrink preexisting svg
         var divid = divlist[divind];
         divind++;
         for(var i = 0; i < svglist.length; i++){
@@ -48,29 +58,33 @@ $(document).ready(function(){
             var w = svg.attr("width");
             svg.transition().duration(duration).attr("width",w/divid).attr("height",h/divid);
         }
-        z_index--;
-        var svgContainer = d3.select("#container").append("svg").attr("width",contWidth).attr("height",contHeight).style("position","absolute").style("top",0).style("left",0).style("z-index",z_index);
-        var circles = svgContainer.selectAll("circle").data(data).enter().append("circle").attr("cx",d=>d.cx).attr("cy",d=>d.cy).attr("r",radius_dot).style("fill",collist[colind]);
-        var circlecol = circles.style("fill");
+
+        //change the text 
+        $("#textcontainer").fadeOut(duration/2,function(){
+            $(this).children().eq(activetext).addClass("hidden");
+            activetext+=1;
+            $(this).children().eq(activetext).removeClass();
+            $(this).children().eq(activetext).css("color",collist[colind]);
+            $(this).fadeIn(duration/2);
+            colind++;
+        });
+
+        //delete invisible svg
         svglist.push(svgContainer);
         while(1){
             var svg = svglist[0];
             var h = svg.attr("height");
             var w = svg.attr("width");
             if(w<radius_dot || h<radius_dot){
+                svg.remove();
                 svglist.shift();
             }
             else{
                 break;
             }
         }
-        $("#textcontainer").fadeOut(duration/2,function(){
-            $(this).children().eq(activetext).addClass("hidden");
-            activetext+=1;
-            $(this).children().eq(activetext).removeClass();
-            $(this).children().eq(activetext).css("color",circlecol);
-            $(this).fadeIn(duration/2);
-            colind++;
-        });
+
+
+
     });
 });
