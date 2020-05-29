@@ -1,20 +1,20 @@
 $(document).ready(function(){
     var contWidth = ($(window).width());
     var contHeight = ($(window).height()*0.85);
-    var radius_dot = 4;
+    var radius_dot = 3;
     var cxval = radius_dot;
     var cyval = radius_dot;
-    var step_val_x = radius_dot*3;
-    var step_val_y = radius_dot*3;
+    var step_val_x = radius_dot*4;
+    var step_val_y = radius_dot*4;
     var data = [];
     var z_index = 19;
     var svglist = [];
     var duration = 1500;
     var activetext = 0;
-    var divlist = [6.32,2.061,5.081,3.217,2.13,3.585,3.464,2.273,1.59,2.52,2.99,6.667,33.911,4.183,1.14,1.73,1.01,85];
+    var divlist = [6.32,2.061,5.081,3.217,2.13,3.585,3.464,2.273,1.59,2.52,2.99,6.667,33.911,4.183,1.14,1.73,1.01,85,2.836];
     var divind = 0;
 
-    var collist = ["FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336"]
+    var collist = ["FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA"]
     var colind = 0;
 
     $("#container").height(contHeight);
@@ -29,6 +29,13 @@ $(document).ready(function(){
     }
     
     
+    function style_word(element, word, css_style) {
+        html = element.html();
+        replace = word;
+        re = new RegExp(replace,"gi");
+        element.html(html.replace(re, "<span style='" + css_style + "'>" + word + "</span>"));
+        }
+
     
     //add initial svg
     var svgContainer = d3.select("#container").append("svg").attr("width",contWidth).attr("height",0).style("position","absolute").style("top",0).style("left",0).style("z-index",z_index);
@@ -40,6 +47,18 @@ $(document).ready(function(){
     colind++;
 
     $("#next").click(function(){
+        if(colind == collist.length){
+            $("#textcontainer").fadeOut(duration/2,function(){
+                $(this).children().eq(activetext).addClass("hidden");
+                activetext+=1;
+                $(this).children().eq(activetext).removeClass();
+                $(this).children().eq(activetext).css("color",collist[colind-1]);
+                $("#next").remove();
+                $(this).css("margin","auto");
+                $(this).fadeIn(duration/2);
+            }); 
+            return;
+        }
         //add new svg, base
         z_index--;
         svgContainer = svgContainer.select(function() {
@@ -60,11 +79,14 @@ $(document).ready(function(){
         }
 
         //change the text 
+
         $("#textcontainer").fadeOut(duration/2,function(){
             $(this).children().eq(activetext).addClass("hidden");
             activetext+=1;
             $(this).children().eq(activetext).removeClass();
             $(this).children().eq(activetext).css("color",collist[colind]);
+            if(colind == collist.length-1){
+            style_word($(this).children().eq(activetext),"worrying",'color:' + collist[colind-1]);}
             $(this).fadeIn(duration/2);
             colind++;
         });
@@ -83,8 +105,5 @@ $(document).ready(function(){
                 break;
             }
         }
-
-
-
     });
 });
