@@ -1,0 +1,21 @@
+.try{
+    border: 1px solid white;
+    object-fit: cover;
+}
+
+.row-content{
+    margin: 1px auto;
+    padding: 50px 0px 50px 0px;
+    border-bottom: 1px ridge;
+    min-height: 40vh;
+}
+
+
+a{
+    text-decoration: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+a:hover{
+    color: inherit;
+}
