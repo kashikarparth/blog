@@ -19,3 +19,15 @@ a{
 a:hover{
     color: inherit;
 }
+
+.phead{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 6.5vh;
+}
+
+.pbody{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 3vh;
+}
