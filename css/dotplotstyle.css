@@ -3,7 +3,7 @@ body{
 }
 #textcontainer{
     font-family: 'Merriweather', serif;
-    font-size: 6vh;
+    font-size: 3vw;
 }
 .hidden{
     font-size: 0;
@@ -13,7 +13,7 @@ body{
     margin-right: 5%;
     color: white;
     font-family: 'Merriweather', serif;
-    font-size: 6vh;
+    font-size: 3vw;
     border: 5px solid white;
     cursor: pointer;
     padding: 5px 10px 5px 10px;
