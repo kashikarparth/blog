@@ -14,20 +14,26 @@ $(document).ready(function(){
     var divlist = [6.32,2.061,5.081,3.217,2.13,3.585,3.464,2.273,1.59,2.52,2.99,6.667,33.911,4.183,1.14,1.73,1.01,85,2.836];
     var divind = 0;
 
+    var widthOffset = 5;
+    var heightOffset = 5;
+    var svgHeight = contHeight - heightOffset;
+    var svgWidth = contWidth - widthOffset;
+
     var collist = ["FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA","FFEB3B","03A9F4","f44336","FAFAFA"]
     var colind = 0;
 
     $("#container").height(contHeight);
     $("#container").width(contWidth);
 
-    for(var i = cyval; i<=contHeight-radius_dot; i+=step_val_y){
-        for(var j = cxval; j<=contWidth-radius_dot;j+=step_val_x)
+    for(var i = cyval; i<=contHeight-radius_dot-heightOffset; i+=step_val_y){
+        for(var j = cxval; j<=contWidth-radius_dot-widthOffset;j+=step_val_x)
         data.push({
             "cx": j,
             "cy": i
         })
     }
     
+
     
     function style_word(element, word, css_style) {
         html = element.html();
@@ -38,9 +44,9 @@ $(document).ready(function(){
 
     
     //add initial svg
-    var svgContainer = d3.select("#container").append("svg").attr("width",contWidth).attr("height",0).style("position","absolute").style("top",0).style("left",0).style("z-index",z_index);
+    var svgContainer = d3.select("#container").append("svg").attr("width",svgWidth).attr("height",0).style("position","absolute").style("top",heightOffset/2).style("left",widthOffset/2).style("z-index",z_index);
     var circles = svgContainer.selectAll("circle").data(data).enter().append("circle").attr("cx",d=>d.cx).attr("cy",d=>d.cy).attr("r",radius_dot).style("fill",collist[colind]);
-    svgContainer.transition().duration(duration).ease(d3.easeSin).attr("height",contHeight);
+    svgContainer.transition().duration(duration).ease(d3.easeSin).attr("height",svgHeight);
     var circlecol = circles.style("fill");
     svglist.push(svgContainer);
     $("#textcontainer").children().eq(activetext).css("color",circlecol);
